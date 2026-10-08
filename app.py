@@ -81,11 +81,7 @@ async def send_request(encrypted_uid, token, url):
         }
         async with aiohttp.ClientSession() as session:
             async with session.post(url, data=edata, headers=headers) as response:
-    print("LIKE HTTP STATUS:", response.status)
-    print("LIKE CONTENT TYPE:", response.headers.get("Content-Type"))
-    body = await response.read()
-    print("LIKE RESPONSE LENGTH:", len(body))
-    return body
+    return await response.text()
     except Exception as e:
         app.logger.error(f"Exception in send_request: {e}")
         return None
