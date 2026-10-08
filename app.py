@@ -148,6 +148,10 @@ def make_request(encrypt, region, token):
             "ReleaseVersion": "OB55"
         }
         response = requests.post(url, data=edata, headers=headers, verify=False)
+      print("HTTP STATUS:", response.status_code)
+print("CONTENT TYPE:", response.headers.get("Content-Type"))
+print("RESPONSE LENGTH:", len(response.content))
+        
         binary = response.content
         decoded = visit_count_pb2.Info()
         decoded.ParseFromString(binary)
